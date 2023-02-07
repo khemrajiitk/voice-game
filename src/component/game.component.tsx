@@ -1,10 +1,9 @@
+import { GameStateProvider } from "../context/game.context";
 import { GameBoardComponent } from "./game-board.component";
-import { GameConfigComponent } from "./game-config.component";
-import { GameResultComponent } from "./game-result.component";
 import { HistoryComponent } from "./history.component";
 import { TimerComponent } from "./timer.component";
 
-export const GameComponent: React.FC<{}> = () => {
+export const GameComponentBase: React.FC<{}> = () => {
     return (
         <div>
             <div className="flex flex-row w-[100%] h-[48px] bg-[#0087ff] fixed">
@@ -22,4 +21,11 @@ export const GameComponent: React.FC<{}> = () => {
             </div>
         </div>
     );
+}
+
+export const GameComponent = () => {
+
+    return <GameStateProvider>
+        <GameComponentBase />
+    </GameStateProvider>
 }
