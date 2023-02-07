@@ -2,7 +2,7 @@ import got from 'got';
 import express from 'express' 
 import cors from 'cors'
 const app = express()
-const port = 4000
+const port = 4040
 
 app.use(cors())
 
@@ -15,7 +15,7 @@ app.get('/api/jwt', async (req, res) => {
             "Content-Type": "application/json",
         },
         searchParams: {
-            aud: "localhost:3000",
+            aud: "localhost:8088",
             expInSec: 3600,
         },
     };
