@@ -1,1 +1,1 @@
-export const BASE_URL = ""
+export const VOICE_GAIN_TOKEN = ""
