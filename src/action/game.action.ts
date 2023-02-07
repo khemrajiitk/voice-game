@@ -4,5 +4,6 @@ export enum GameAction {
     STOP_GAME = "stop_game",
     UPDATE_SPEED = "update_speed",
     UPDATE_GRID_SIZE = "update_grid_size",
-    UPDATE_LOADING = "update_loading"
+    UPDATE_LOADING = "update_loading",
+    UPDATE_SCORE = "update_score"
 }

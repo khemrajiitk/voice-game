@@ -11,6 +11,7 @@ const initialState = {
     speed: 2000,
     grideSize: GridSize.Medium,
     gridList: [],
+    score: 0,
     boardStart: {
         x: 0,
         y: 0
@@ -27,11 +28,20 @@ export const GameStateProvider = ({ children }: any) => {
 
     const [state, dispatch] = useReducer(GameReducer, initialState)
 
-    const startGame = () => {
+    const initGame = () => {
         dispatch({
             type: GameAction.INIT_GAME,
             payload: {
                 stage: GameStage.YET_TO_START
+            }
+        });
+    };
+
+    const startGame = () => {
+        dispatch({
+            type: GameAction.START_GAME,
+            payload: {
+                stage: GameStage.IN_PROGRESS
             }
         });
     };
@@ -61,6 +71,24 @@ export const GameStateProvider = ({ children }: any) => {
         });
     }
 
+    const stopGame = () => {
+        dispatch({
+            type: GameAction.STOP_GAME,
+            payload: {
+                stage: GameStage.COMPLETED
+            }
+        });
+    };
+
+    const updateScore = (score: number) => {
+        dispatch({
+            type: GameAction.UPDATE_SCORE,
+            payload: {
+                score: score
+            }
+        });
+    }
+
     const value = {
         stage: state.stage,
         speed: state.speed,
@@ -68,10 +96,14 @@ export const GameStateProvider = ({ children }: any) => {
         gridList: state.gridList,
         boardStart: state.boardStart,
         boardEnd: state.boardEnd,
+        score: state.score,
+        initGame,
         startGame,
         updateLoading,
         updateGridSize,
         updateSpeed,
+        stopGame,
+        updateScore,
     };
 
     return <GameContext.Provider value={value}>{children}</GameContext.Provider>

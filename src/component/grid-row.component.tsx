@@ -6,7 +6,7 @@ export const GridRowComponent: React.FC<{}> = () => {
         finalList.push(i)
     }
     return (
-        <div className="flex flex-col gap-[1px]">
+        <div className="flex flex-row gap-[1px]">
             {finalList.map(() => {
                 return <GridComponent />
             })}

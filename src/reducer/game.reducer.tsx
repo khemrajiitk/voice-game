@@ -11,6 +11,31 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
                 ...state,
                 stage: payload.stage
             };
+        case GameAction.START_GAME:
+            return {
+                ...state,
+                stage: payload.stage
+            };
+        case GameAction.UPDATE_SPEED:
+            return {
+                ...state,
+                speed: payload.speed
+            };
+        case GameAction.UPDATE_GRID_SIZE:
+            return {
+                ...state,
+                grideSize: payload.grideSize
+            };
+        case GameAction.STOP_GAME:
+            return {
+                ...state,
+                stage: payload.stage
+            };
+        case GameAction.UPDATE_SCORE:
+            return {
+                ...state,
+                score: payload.score
+            };
         default:
             throw new Error(`No case for type ${type} found in GameReducer.`);
     }
