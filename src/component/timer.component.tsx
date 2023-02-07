@@ -28,7 +28,7 @@ export const TimerComponent: React.FC<{}> = () => {
 
     return (
         <p className="text-sm font-bold underline">
-            {currentTime.toFixed(0)}
+            {currentTime.toFixed(0)} Seconds
         </p>
     );
 }

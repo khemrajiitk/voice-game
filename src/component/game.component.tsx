@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { CollectorStateProvider } from "../context/collector.context";
 import { GameContext, GameStateProvider } from "../context/game.context";
 import { TimerStateProvider } from "../context/timer.context";
 import { GameStage } from "../enum/game-stage.enum";
@@ -41,7 +42,9 @@ export const GameComponent = () => {
 
     return <GameStateProvider>
         <TimerStateProvider>
-            <GameComponentBase />
+            <CollectorStateProvider>
+                <GameComponentBase />
+            </CollectorStateProvider>
         </TimerStateProvider>
     </GameStateProvider>
 }

@@ -6,7 +6,7 @@ export interface GameState {
     stage: GameStage
     speed: number
     grideSize: GridSize
-    gridList: Grid[]
+    grid: Grid[][]
     score: number,
     boardStart: Position //position of board left top point
     boardEnd: Position // position of board right bottom point

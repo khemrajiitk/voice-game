@@ -1,6 +1,4 @@
-export enum GameMove {
-    START = "start",
-    STOP = "stop",
+export enum CollectorDirection {
     UP = "up",
     DOWN = "down",
     LEFT = "left",

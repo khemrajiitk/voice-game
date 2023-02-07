@@ -28,5 +28,4 @@ export const TimerReducer = (state: TimerState, action: Action): TimerState => {
         default:
             throw new Error(`No case for type ${type} found in TimerReducer.`);
     }
-
 }

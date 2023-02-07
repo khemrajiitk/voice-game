@@ -3,14 +3,34 @@ import { GameAction } from "../action/game.action";
 import { GameStage } from "../enum/game-stage.enum";
 import { GridSize } from "../enum/grid-size.enum";
 import { GameState } from "../model/game-state.model";
-import { Position } from "../model/grid.model";
+import { Grid, Position } from "../model/grid.model";
 import { GameReducer } from "../reducer/game.reducer";
+
+const getGrid = (): Grid[][] => {
+    const _grid = []
+    for (let x = 1; x <= 20; x++) {
+        const _gridRow = []
+        for (let y = 1; y <= 20; y++) {
+            _gridRow.push({
+                id: `${new Date().getTime()}`,
+                picked: false,
+                includeObject: Math.round(Math.random()) == 0 ? false : true,
+                position: {
+                    x: x,
+                    y: y
+                }
+            } as Grid)
+        }
+        _grid.push(_gridRow)
+    }
+    return _grid
+}
 
 const initialState = {
     stage: GameStage.YET_TO_START,
     speed: 2000,
     grideSize: GridSize.Medium,
-    gridList: [],
+    grid: getGrid(),
     score: 0,
     boardStart: {
         x: 0,
@@ -32,7 +52,8 @@ export const GameStateProvider = ({ children }: any) => {
         dispatch({
             type: GameAction.INIT_GAME,
             payload: {
-                stage: GameStage.YET_TO_START
+                stage: GameStage.YET_TO_START,
+                grid: getGrid()
             }
         });
     };
@@ -64,11 +85,31 @@ export const GameStateProvider = ({ children }: any) => {
         });
     };
 
-    const updateLoading = () => {
+    const collectObject = (position: Position) => {
         dispatch({
-            type: GameAction.UPDATE_LOADING,
-            payload: {}
+            type: GameAction.UPDATE_GRID,
+            payload: {
+                position: { ...position }
+            }
         });
+    }
+
+    const checkForWinner = () => {
+        let winner = true;
+        for (let x = 1; x <= 20; x++) {
+            for (let y = 1; y <= 20; y++) {
+                if (state.grid[x - 1][y - 1].includeObject == true && !state.grid[x - 1][y - 1].picked) {
+                    winner = false;
+                    break;
+                }
+            }
+            if (winner == false) {
+                break;
+            }
+        }
+        if (winner) {
+            stopGame()
+        }
     }
 
     const stopGame = () => {
@@ -93,17 +134,18 @@ export const GameStateProvider = ({ children }: any) => {
         stage: state.stage,
         speed: state.speed,
         grideSize: state.grideSize,
-        gridList: state.gridList,
+        grid: state.grid,
         boardStart: state.boardStart,
         boardEnd: state.boardEnd,
         score: state.score,
         initGame,
         startGame,
-        updateLoading,
+        collectObject,
         updateGridSize,
         updateSpeed,
         stopGame,
         updateScore,
+        checkForWinner
     };
 
     return <GameContext.Provider value={value}>{children}</GameContext.Provider>

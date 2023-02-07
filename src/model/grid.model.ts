@@ -1,4 +1,5 @@
 export interface Grid {
+    id: string
     picked: boolean
     includeObject: boolean
     position: Position

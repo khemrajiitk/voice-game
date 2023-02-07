@@ -1,27 +1,32 @@
 import { useContext, useEffect } from "react";
+import { CollectorContext } from "../context/collector.context";
 import { GameContext } from "../context/game.context";
 import { TimerContext } from "../context/timer.context";
+import { Grid } from "../model/grid.model";
 import { GridRowComponent } from "./grid-row.component";
 
 export const GameBoardComponent: React.FC<{}> = () => {
-    const { stopGame } = useContext(GameContext)
-    const { startTime, startTimer } = useContext(TimerContext)
+    const { grid, startGame, checkForWinner } = useContext(GameContext)
+    const { startTimer } = useContext(TimerContext)
+    const { startCollector } = useContext(CollectorContext)
+
+    const startPlaying = () => {
+        startGame()
+        startTimer()
+        startCollector()
+    }
 
     useEffect(() => {
-        startTimer()
-    }, [])
+        checkForWinner()
+    }, [grid])
 
-    const finalList = []
-    for (let i = 0; i < 20; i++) {
-        finalList.push(i)
-    }
     return (
         <div className="flex flex-col gap-[1px] mx-auto">
-            {finalList.map(() => {
-                return <GridRowComponent />
+            {grid.map((gridRow: Grid[]) => {
+                return <GridRowComponent gridRow={gridRow} />
             })}
             <button className="mt-[24px] p-[8px] bg-[#0087ff] rounded-md w-[248px] text-[#ffffff] text-2xl text-bold"
-                onClick={stopGame}>Stop Game</button>
+                onClick={startPlaying}>Start Game</button>
         </div>
     );
 }
