@@ -1,7 +1,7 @@
-export const TimerComponent: React.FC<{}> = () => {
+export const HistoryComponent: React.FC<{}> = () => {
     return (
         <p className="text-sm font-bold underline">
-            Timer Component!
+            History Component!
         </p>
     );
 }

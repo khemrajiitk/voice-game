@@ -1,7 +1,5 @@
 export const GridComponent: React.FC<{}> = () => {
     return (
-        <h1 className="text-2xl font-bold underline">
-            Collector Component!
-        </h1>
+        <div className="w-[32px] h-[32px] bg-amber-700" />
     );
 }
