@@ -1,10 +1,10 @@
-## Available Scripts
+## Script to runn Game
 
-Go to server dir and run
-### `npm i`
+### Go to server directory
+#### Run command `npm i`
 
-
-In the project directory, you can run:
-### `npm i`
-### `npm run server`
-### `npm start`
+### Back to root directory
+#### Run command `npm run server` // it will run server for jwt token
+### Open new terminal window
+#### Run command `npm i`
+### Run Command `npm run start`
