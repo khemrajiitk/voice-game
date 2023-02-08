@@ -15,7 +15,7 @@ export const GameComponentBase: React.FC = () => {
         <div>
             <div className="flex flex-row w-[100%] h-[48px] bg-[#0087ff] fixed">
                 <p className="px-[16px] py-[8px] text-2xl text-[#ffffff]">Voice Game</p>
-                {stage == GameStage.IN_PROGRESS && (
+                {(stage == GameStage.READY || stage == GameStage.IN_PROGRESS) && (
                     <div className="flex flex-col right-[16px] absolute top-[4px]">
                         <TimerComponent />
                         <HistoryComponent />
