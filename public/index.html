@@ -22,52 +22,13 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-  <title>React App</title>
+  <title>Voice Game App</title>
+  <!-- <link rel="stylesheet" href="styles.css" /> -->
 </head>
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
-  <div>
-    <div>
-      <h1>Microphone Capture Transcription</h1>
-    </div>
-    <div>
-      <button onclick="connectWebsocket()" id="start-capture-button">
-        Start Capture
-      </button>
-      <button onclick="stopMicrophoneCapture()" id="stop-capture-button" disabled>
-        Stop Capture
-      </button>
-    </div>
-    <div id="loader-container">
-      <div class="loader">Starting...</div>
-    </div>
-    <div id="capture-status">
-      <h3>Capturing...</h3>
-    </div>
-    <div id="finalizing-status">
-      <h3>Finalizing...</h3>
-    </div>
-    <div id="transcription-result"></div>
-    <div id="myText">
-      <input style="text-align:center" type="text" id="firstText"
-        placeholder="Enter first keyword match separated by commas">
-      <br>
-      <input style="text-align:center" type="text" id="secondText" placeholder="Enter second keyword match">
-      <br>
-      <input style="text-align:center" type="text" id="thirdText" placeholder="Enter third keyword match">
-      <br>
-      <input style="text-align:center" type="text" id="fourthText" placeholder="Enter fourth keyword match">
-      <br>
-      <br>
-      <button onclick="updateGrammar()" id="sendGrammar">
-        Send Grammar
-      </button>
-      <br>
-      <br>
-      <span id='matchMessage'>Match Result Will Be Shown Here</span>
-    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -79,8 +40,8 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
     <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@5.0.0/bundles/stomp.umd.min.js"></script>
-    <script src="audio-services.js" async defer></script>
-    <script src="microphone-capture.js" async defer></script>
+    <!-- <script src="audio-services.js" async defer></script>
+    <script src="microphone-capture.js" async defer></script> -->
 </body>
 
 </html>

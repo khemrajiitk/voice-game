@@ -15,7 +15,7 @@ app.get('/api/jwt', async (req, res) => {
             "Content-Type": "application/json",
         },
         searchParams: {
-            aud: "localhost:8088",
+            aud: "localhost:3000",
             expInSec: 3600,
         },
     };

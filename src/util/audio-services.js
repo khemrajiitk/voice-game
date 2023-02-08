@@ -1,4 +1,4 @@
-class AudioCaptureStreamingService {
+export class AudioCaptureStreamingService {
   //Create new websocket and start microphone
   static start = (webSocketUrl) => {
     console.log("starting...");
@@ -30,7 +30,7 @@ const AUDIO_CONTEXT_OPTIONS = {
   sampleRate: 16000,
 };
 
-class AudioCaptureService {
+export class AudioCaptureService {
   //Start microphone streaming
   static start = (onAudioProcess) => {
     console.debug("Start audio capture");

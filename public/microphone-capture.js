@@ -37,14 +37,11 @@ let request = {
               "<first> {first} | <second> {second} | <third> {third} | <fourth> {fourth}",
           },
           rules: {
-            first:
-              "((first alt phrase of first command) | (second alt phrase of first command))",
-            second:
-              "((first alt phrase of second command) | (second alt phrase of second command))",
-            third:
-              "((first alt phrase of third command) | (second alt phrase of third command))",
+            first: "up",
+            second: "down",
+            third: "((left) | (right))",
             fourth:
-              "((first alt phrase of fourth command) | (second alt phrase of fourth command))",
+              "((stop) | (start))",
           },
         },
       ],
@@ -56,18 +53,19 @@ let request = {
 function updateGrammar() {
   let command = request.settings.asr.grammars[0].rules;
   //FIRST TEXT BOX
-  const grammarOne = document.getElementById("firstText").value;
+  const grammarOne = "up";
   const firstArr = grammarOne.toString().split(",");
   let semiStringOne = firstArr[0];
   for (i = 1; i < firstArr.length; i++) {
     semiStringOne = "(" + semiStringOne + ")" + "|" + "(" + firstArr[i] + ")";
   }
   if (grammarOne.trim().length > 1) {
+    console.log(semiStringOne)
     command.first = semiStringOne;
   } else command.first = `<VOID>`;
 
   //SECOND TEXT BOX
-  const grammarTwo = document.getElementById("secondText").value;
+  const grammarTwo = "down";
   const secondArr = grammarTwo.toString().split(",");
   let semiStringTwo = secondArr[0];
   for (i = 1; i < secondArr.length; i++) {
@@ -78,7 +76,7 @@ function updateGrammar() {
   } else command.second = `<VOID>`;
 
   //THIRD TEXT BOX
-  const grammarThree = document.getElementById("thirdText").value;
+  const grammarThree = "left,right";
   const thirdArr = grammarThree.toString().split(",");
   let semiStringThree = thirdArr[0];
   for (i = 1; i < thirdArr.length; i++) {
@@ -90,7 +88,7 @@ function updateGrammar() {
   } else command.third = `<VOID>`;
 
   //FOURTH TEXT BOX
-  const grammarFour = document.getElementById("fourthText").value;
+  const grammarFour = "start, stop"
   const fourthArr = grammarFour.toString().split(",");
   let semiStringFour = fourthArr[0];
   for (i = 1; i < fourthArr.length; i++) {
@@ -102,6 +100,7 @@ function updateGrammar() {
   } else command.fourth = `<VOID>`;
 
   console.log("Request first tag: " + command.first);
+  console.log("Request first tag: " + command);
 }
 
 //Fetch temporary JWT Token and make call to Voicegain API to get websocket URLs
@@ -188,6 +187,7 @@ const startMicrophoneCapture = (websocketSendUrl, websocketReceiveUrl) => {
 
         //Processing grammar websocket results
         interpretGrammarMessage = (message) => {
+          console.log(message)
           grammarOutput = document.getElementById("matchMessage");
           grammarOutput.style.display = "none";
 

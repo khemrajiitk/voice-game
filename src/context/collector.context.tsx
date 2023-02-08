@@ -7,7 +7,7 @@ import { Position } from "../model/grid.model";
 import { CollectorReducer } from "../reducer/collector.reducer";
 
 const initialState = {
-    stage: CollectorStage.Moving,
+    stage: CollectorStage.Study,
     direction: CollectorDirection.LEFT,
     position: {
         x: 4,

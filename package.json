@@ -17,7 +17,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "PORT=8088 react-scripts start",
+    "start": "PORT=3000 react-scripts start",
     "server": "cd server && npm run start:dev",
     "build": "react-scripts build",
     "test": "react-scripts test",
