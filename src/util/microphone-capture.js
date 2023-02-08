@@ -148,7 +148,7 @@ const startMicrophoneCapture = (websocketSendUrl, websocketReceiveUrl, updateCal
 };
 
 //Stop audio capturing services
-const stopMicrophoneCapture = (stageUpdateCallback) => {
+export const stopMicrophoneCapture = (stageUpdateCallback) => {
   showCaptureStatus(false, stageUpdateCallback);
   AudioCaptureStreamingService.stop();
   if (websocket !== undefined) {

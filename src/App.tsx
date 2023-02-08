@@ -3,7 +3,7 @@ import './App.css';
 import { GameComponent } from './component/game.component';
 import { VCContext, VCStateProvider } from './context/voice-controller.context';
 import { VCStage } from './enum/voice-controller-stage.enum';
-import { connectWebsocket } from './util/microphone-capture';
+import { connectWebsocket, stopMicrophoneCapture } from './util/microphone-capture';
 
 const AppBase = () => {
 
@@ -36,6 +36,9 @@ const AppBase = () => {
   useEffect(() => {
     console.log("starting voice engine...")
     connectWebsocket(updateCallback, stageUpdateCallback)
+    return () => {
+      stopMicrophoneCapture(stageUpdateCallback)
+    }
   }, [])
 
   return (

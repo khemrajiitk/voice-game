@@ -16,9 +16,14 @@ export const GameBoardComponent: React.FC<{}> = () => {
 
     const startPlaying = () => {
         startGame()
-        startTimer()
-        startCollector()
     }
+
+    useEffect(() => {
+        if (stage == GameStage.IN_PROGRESS) {
+            startTimer()
+            startCollector()
+        }
+    }, [stage])
 
     useEffect(() => {
         checkForWinner()
@@ -56,8 +61,10 @@ export const GameBoardComponent: React.FC<{}> = () => {
             {grid.map((gridRow: Grid[]) => {
                 return <GridRowComponent gridRow={gridRow} />
             })}
-            <button className="mt-[24px] p-[8px] bg-[#0087ff] rounded-md w-[364px] text-[#ffffff] text-2xl text-bold"
-                onClick={startPlaying}>Click here or say start to start game</button>
+            {stage != GameStage.IN_PROGRESS && (
+                <button className="mt-[24px] p-[8px] bg-[#0087ff] rounded-md w-[364px] text-[#ffffff] text-2xl text-bold"
+                    onClick={startPlaying}>Click here or say start to start game</button>
+            )}
         </div>
     );
 }

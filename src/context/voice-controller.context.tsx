@@ -16,6 +16,13 @@ export const VCStateProvider = ({ children }: any) => {
 
     const [state, dispatch] = useReducer(VCReducer, initialState)
 
+    const initVC = () => {
+        dispatch({
+            type: VCAction.INIT_VC,
+            payload: {}
+        });
+    };
+
     const updateCommand = (command: string) => {
         dispatch({
             type: VCAction.UPDATE_COMMAND,
@@ -40,6 +47,7 @@ export const VCStateProvider = ({ children }: any) => {
         lastCommand: state.lastCommand,
         updateCommand,
         updateStage,
+        initVC
     };
 
     return <VCContext.Provider value={value}>{children}</VCContext.Provider>

@@ -27,7 +27,7 @@ export const GameComponentBase: React.FC = () => {
                 {stage == GameStage.YET_TO_START && (
                     <GameConfigComponent />
                 )}
-                {stage == GameStage.IN_PROGRESS && (
+                {(stage == GameStage.READY || stage == GameStage.IN_PROGRESS) && (
                     <GameBoardComponent />
                 )}
                 {stage == GameStage.COMPLETED && (

@@ -6,6 +6,12 @@ export const VCReducer = (state: VCState, action: Action): VCState => {
     const { type, payload } = action
 
     switch (type) {
+        case VCAction.INIT_VC:
+            return {
+                ...state,
+                currentCommand: "",
+                lastCommand: ""
+            };
         case VCAction.UPDATE_COMMAND:
             let lastCommand = state.currentCommand
             return {

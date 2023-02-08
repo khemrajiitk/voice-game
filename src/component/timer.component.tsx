@@ -8,7 +8,7 @@ export const TimerComponent: React.FC<{}> = () => {
 
     const intervalId = useRef<any>(null)
 
-    const startTimer = () => {
+    const startTicker = () => {
         intervalId.current = setInterval(() => {
             if (stage == TimerStage.Started) {
                 const currentTime = new Date().getTime()
@@ -20,7 +20,7 @@ export const TimerComponent: React.FC<{}> = () => {
 
     useEffect(() => {
         if (stage == TimerStage.Started) {
-            startTimer()
+            startTicker()
         } else if (intervalId.current) {
             clearInterval(intervalId.current)
         }

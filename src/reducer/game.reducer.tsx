@@ -12,6 +12,11 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
                 stage: payload.stage,
                 grid: payload.grid
             };
+        case GameAction.READY_GAME:
+            return {
+                ...state,
+                stage: payload.stage
+            };
         case GameAction.START_GAME:
             return {
                 ...state,
@@ -39,7 +44,7 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
             };
         case GameAction.UPDATE_GRID:
             const _grid = [...state.grid]
-            _grid[payload.position.x-1][payload.position.y-1].picked = true
+            _grid[payload.position.x - 1][payload.position.y - 1].picked = true
             return {
                 ...state,
                 grid: [..._grid]

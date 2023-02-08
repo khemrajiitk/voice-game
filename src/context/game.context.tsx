@@ -58,6 +58,15 @@ export const GameStateProvider = ({ children }: any) => {
         });
     };
 
+    const readyGame = () => {
+        dispatch({
+            type: GameAction.READY_GAME,
+            payload: {
+                stage: GameStage.READY
+            }
+        });
+    };
+
     const startGame = () => {
         dispatch({
             type: GameAction.START_GAME,
@@ -139,6 +148,7 @@ export const GameStateProvider = ({ children }: any) => {
         boardEnd: state.boardEnd,
         score: state.score,
         initGame,
+        readyGame,
         startGame,
         collectObject,
         updateGridSize,

@@ -4,7 +4,7 @@ import { VCContext } from "../context/voice-controller.context";
 import { VCStage } from "../enum/voice-controller-stage.enum";
 
 export const GameConfigComponent: React.FC<{}> = () => {
-    const { speed, grideSize, updateSpeed, updateGridSize, startGame } = useContext(GameContext)
+    const { speed, grideSize, updateSpeed, updateGridSize, readyGame } = useContext(GameContext)
 
     const { stage } = useContext(VCContext)
 
@@ -39,7 +39,7 @@ export const GameConfigComponent: React.FC<{}> = () => {
             )}
             {stage == VCStage.Ready && (
                 <button className="mt-[24px] p-[8px] bg-[#0087ff] rounded-md w-[248px] text-[#ffffff] text-2xl text-bold"
-                    onClick={startGame}>Start Game</button>
+                    onClick={readyGame}>Go to Game</button>
             )}
 
         </div>
