@@ -44,7 +44,7 @@ export const GameBoardComponent: React.FC<{}> = () => {
                 updateDirection(CollectorDirection.RIGHT)
                 break
             case "start":
-                if (stage == GameStage.YET_TO_START) {
+                if (stage == GameStage.READY) {
                     startPlaying()
                 } else {
                     startCollector()
