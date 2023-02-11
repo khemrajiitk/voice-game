@@ -1,18 +1,18 @@
+import { group } from "console";
 import { createContext, useReducer } from "react";
 import { GameAction } from "../action/game.action";
 import { GameStage } from "../enum/game-stage.enum";
-import { GridSize } from "../enum/grid-size.enum";
 import { GameState } from "../model/game-state.model";
 import { Grid, Position } from "../model/grid.model";
 import { GameReducer } from "../reducer/game.reducer";
 
-const getGrid = (): Grid[][] => {
+const getGrid = (gridSize: number): Grid[][] => {
     const _grid = []
-    for (let x = 1; x <= 20; x++) {
+    for (let x = 1; x <= gridSize; x++) {
         const _gridRow = []
-        for (let y = 1; y <= 20; y++) {
+        for (let y = 1; y <= gridSize; y++) {
             _gridRow.push({
-                id: `${new Date().getTime()}`,
+                id: `${new Date().getTime()}_${x}_${y}`,
                 picked: false,
                 includeObject: Math.round(Math.random()) == 0 ? false : true,
                 position: {
@@ -29,8 +29,8 @@ const getGrid = (): Grid[][] => {
 const initialState = {
     stage: GameStage.YET_TO_START,
     speed: 2000,
-    gridSize: GridSize.Medium,
-    grid: getGrid(),
+    gridSize: 8,
+    grid: getGrid(8),
     score: 0,
     boardStart: {
         x: 0,
@@ -52,8 +52,7 @@ export const GameStateProvider = ({ children }: any) => {
         dispatch({
             type: GameAction.INIT_GAME,
             payload: {
-                stage: GameStage.YET_TO_START,
-                grid: getGrid()
+                stage: GameStage.YET_TO_START
             }
         });
     };
@@ -85,11 +84,13 @@ export const GameStateProvider = ({ children }: any) => {
         });
     };
 
-    const updateGridSize = (gridSize: GridSize) => {
+    const updateGridSize = (gridSize: number) => {
+        console.log(gridSize)
         dispatch({
             type: GameAction.UPDATE_GRID_SIZE,
             payload: {
-                gridSize: gridSize
+                gridSize: gridSize,
+                grid: getGrid(gridSize)
             }
         });
     };
@@ -104,10 +105,12 @@ export const GameStateProvider = ({ children }: any) => {
     }
 
     const checkForWinner = () => {
+        console.log(state.gridSize)
+        console.log(state.grid)
         let winner = true;
-        for (let x = 1; x <= 20; x++) {
-            for (let y = 1; y <= 20; y++) {
-                if (state.grid[x - 1][y - 1].includeObject == true && !state.grid[x - 1][y - 1].picked) {
+        for (let x = 0; x < state.gridSize; x++) {
+            for (let y = 0; y < state.gridSize; y++) {
+                if (state.grid[x][y].includeObject == true && !state.grid[x][y].picked) {
                     winner = false;
                     break;
                 }

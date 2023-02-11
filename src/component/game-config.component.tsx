@@ -17,7 +17,7 @@ export const GameConfigComponent: React.FC<{}> = () => {
                 <p className="text-xl">
                     Grid Size(slect from 16, 24, 32):
                 </p>
-                <input placeholder="Please enter Grid Size" value={gridSize} type={"number"} className="min-w-[160px]" max={12} min={4} step={4}
+                <input placeholder="Please enter Grid Size" value={gridSize} type={"number"} className="min-w-[160px]" max={94} min={2} step={1}
                     onChange={(e: any) => { updateGridSize(e.target.value) }} />
             </div>
 

@@ -26,7 +26,7 @@ export const GameBoardComponent: React.FC<{}> = () => {
     }, [stage])
 
     useEffect(() => {
-        checkForWinner()
+        // checkForWinner()
     }, [grid])
 
     useEffect(() => {
@@ -57,10 +57,12 @@ export const GameBoardComponent: React.FC<{}> = () => {
     }, [currentCommand])
 
     return (
-        <div className="flex flex-col gap-[1px] mx-auto max-w-[200%] max-h-[200%]">
-            {grid.map((gridRow: Grid[]) => {
-                return <GridRowComponent gridRow={gridRow} key={`${gridRow[0].position.x}_row_number`} />
-            })}
+        <div className="flex flex-col gap-[16px] mx-auto max-w-[200%] max-h-[200%]">
+            <div className="flex flex-col gap-[1px]">
+                {grid.map((gridRow: Grid[]) => {
+                    return <GridRowComponent gridRow={gridRow} key={`${gridRow[0].position.x}_row_number`} />
+                })}
+            </div>
             {stage != GameStage.IN_PROGRESS && (
                 <button className="mt-[24px] p-[8px] bg-[#0087ff] rounded-md w-[364px] text-[#ffffff] text-2xl text-bold"
                     onClick={startPlaying}>Click here or say start to start game</button>

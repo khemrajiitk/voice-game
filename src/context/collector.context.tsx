@@ -44,7 +44,7 @@ export const CollectorStateProvider = ({ children }: any) => {
         });
     };
 
-    const moveCollector = (position: Position, direction: CollectorDirection) => {
+    const moveCollector = (position: Position, direction: CollectorDirection, gridSize: number) => {
         let _x = 1
         let _y = 1
 
@@ -52,14 +52,14 @@ export const CollectorStateProvider = ({ children }: any) => {
             case CollectorDirection.LEFT:
                 _x = position.x
                 if (position.y == 1) {
-                    _y = 20
+                    _y = gridSize
                 } else {
                     _y = position.y - 1
                 }
                 break;
             case CollectorDirection.RIGHT:
                 _x = position.x
-                if (position.y == 20) {
+                if (position.y == gridSize) {
                     _y = 1
                 } else {
                     _y = position.y + 1
@@ -68,14 +68,14 @@ export const CollectorStateProvider = ({ children }: any) => {
             case CollectorDirection.UP:
                 _y = position.y
                 if (position.x == 1) {
-                    _x = 20
+                    _x = gridSize
                 } else {
                     _x = position.x - 1
                 }
                 break;
             case CollectorDirection.DOWN:
                 _y = position.y
-                if (position.x == 20) {
+                if (position.x == gridSize) {
                     _x = 1
                 } else {
                     _x = position.x + 1

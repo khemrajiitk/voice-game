@@ -1,3 +1,4 @@
+import React from "react";
 import { useContext, useEffect } from "react";
 import { CollectorContext } from "../context/collector.context";
 import { GameContext } from "../context/game.context";
@@ -5,7 +6,7 @@ import { CollectorStage } from "../enum/collector-stage.enum";
 import { Grid } from "../model/grid.model";
 import { CollectorComponent } from "./collector.component";
 
-export const GridComponent: React.FC<{ grid: Grid }> = ({ grid }) => {
+const GridComponentBase: React.FC<{ grid: Grid }> = ({ grid }) => {
     const { speed, gridSize, collectObject } = useContext(GameContext)
     const { position, stage, direction, moveCollector } = useContext(CollectorContext)
 
@@ -14,7 +15,7 @@ export const GridComponent: React.FC<{ grid: Grid }> = ({ grid }) => {
             if (grid.includeObject && !grid.picked) {
                 collectObject(grid.position)
             }
-            moveCollector(position, direction)
+            moveCollector(position, direction, gridSize)
         }, speed)
     }
 
@@ -24,7 +25,7 @@ export const GridComponent: React.FC<{ grid: Grid }> = ({ grid }) => {
         }
     }, [position, stage])
 
-    const gridSizeClass = `w-[${gridSize}px] h-[${gridSize}px]`
+    const gridSizeClass = `w-[${24}px] h-[${24}px]`
 
     return (
         <div className={`${gridSizeClass} bg-amber-700 relative`}>
@@ -42,3 +43,5 @@ export const GridComponent: React.FC<{ grid: Grid }> = ({ grid }) => {
         </div>
     );
 }
+
+export const GridComponent = React.memo(GridComponentBase);
