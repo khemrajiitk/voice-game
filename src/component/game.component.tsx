@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CollectorStateProvider } from "../context/collector.context";
 import { GameContext, GameStateProvider } from "../context/game.context";
 import { TimerStateProvider } from "../context/timer.context";
@@ -10,7 +10,15 @@ import { HistoryComponent } from "./history.component";
 import { TimerComponent } from "./timer.component";
 
 export const GameComponentBase: React.FC = () => {
-    const { stage } = useContext(GameContext)
+    const { loading, stage, updateLoading } = useContext(GameContext)
+
+    useEffect(() => {
+        console.log(loading)
+        if (stage == GameStage.READY && loading) {
+            updateLoading()
+        }
+    }, [stage, loading])
+
     return (
         <div>
             <div className="flex flex-row w-[100%] h-[48px] bg-[#0087ff] fixed">
@@ -23,17 +31,25 @@ export const GameComponentBase: React.FC = () => {
                 )}
             </div>
 
-            <div className="flex flex-col px-[16px] py-[16px] pt-[52px]">
-                {stage == GameStage.YET_TO_START && (
-                    <GameConfigComponent />
-                )}
-                {(stage == GameStage.READY || stage == GameStage.IN_PROGRESS) && (
-                    <GameBoardComponent />
-                )}
-                {stage == GameStage.COMPLETED && (
-                    <GameResultComponent />
-                )}
-            </div>
+            {!loading && (
+                <div className="flex flex-col px-[16px] py-[16px] pt-[52px]">
+                    {stage == GameStage.YET_TO_START && (
+                        <GameConfigComponent />
+                    )}
+                    {(stage == GameStage.READY || stage == GameStage.IN_PROGRESS) && (
+                        <GameBoardComponent />
+                    )}
+                    {stage == GameStage.COMPLETED && (
+                        <GameResultComponent />
+                    )}
+                </div>
+            )}
+
+            {loading && (
+                <div className="flex flex-col px-[16px] py-[16px] pt-[52px]">
+                    <h1>Loading</h1>
+                </div>
+            )}
         </div>
     );
 }

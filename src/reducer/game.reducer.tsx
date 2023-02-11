@@ -15,7 +15,8 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
         case GameAction.READY_GAME:
             return {
                 ...state,
-                stage: payload.stage
+                stage: payload.stage,
+                grid: [...payload.grid]
             };
         case GameAction.START_GAME:
             return {
@@ -30,8 +31,7 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
         case GameAction.UPDATE_GRID_SIZE:
             return {
                 ...state,
-                gridSize: payload.gridSize,
-                grid: [...payload.grid]
+                gridSize: payload.gridSize
             };
         case GameAction.STOP_GAME:
             return {
@@ -49,6 +49,12 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
             return {
                 ...state,
                 grid: [..._grid]
+            };
+        case GameAction.UPDATE_LOADING:
+            const _loading = !state.loading
+            return {
+                ...state,
+                loading: _loading
             };
         default:
             throw new Error(`No case for type ${type} found in GameReducer.`);

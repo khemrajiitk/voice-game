@@ -9,7 +9,7 @@ import { Grid } from "../model/grid.model";
 import { GridRowComponent } from "./grid-row.component";
 
 export const GameBoardComponent: React.FC<{}> = () => {
-    const { stage, grid, startGame, checkForWinner } = useContext(GameContext)
+    const { stage, grid, startGame, checkForWinner, gridSize } = useContext(GameContext)
     const { startTimer } = useContext(TimerContext)
     const { startCollector, stopCollector, updateDirection } = useContext(CollectorContext)
     const { currentCommand } = useContext(VCContext)
@@ -26,7 +26,7 @@ export const GameBoardComponent: React.FC<{}> = () => {
     }, [stage])
 
     useEffect(() => {
-        // checkForWinner()
+        checkForWinner()
     }, [grid])
 
     useEffect(() => {
@@ -57,7 +57,7 @@ export const GameBoardComponent: React.FC<{}> = () => {
     }, [currentCommand])
 
     return (
-        <div className="flex flex-col gap-[16px] mx-auto max-w-[200%] max-h-[200%]">
+        <div className={`flex flex-col gap-[16px] mx-auto max-w-[${gridSize * 1.66}%] max-h-[${gridSize * 1.66}%]`}>
             <div className="flex flex-col gap-[1px]">
                 {grid.map((gridRow: Grid[]) => {
                     return <GridRowComponent gridRow={gridRow} key={`${gridRow[0].position.x}_row_number`} />

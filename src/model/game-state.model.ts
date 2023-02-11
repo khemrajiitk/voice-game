@@ -2,6 +2,7 @@ import { GameStage } from "../enum/game-stage.enum";
 import { Grid, Position } from "./grid.model";
 
 export interface GameState {
+    loading: boolean
     stage: GameStage
     speed: number
     gridSize: number

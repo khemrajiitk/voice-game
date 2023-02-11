@@ -10,8 +10,8 @@ const initialState = {
     stage: CollectorStage.Study,
     direction: CollectorDirection.LEFT,
     position: {
-        x: 4,
-        y: 4
+        x: 1,
+        y: 1
     } as Position
 } as CollectorState
 

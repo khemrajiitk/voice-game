@@ -18,7 +18,9 @@ export const GameConfigComponent: React.FC<{}> = () => {
                     Grid Size(slect from 16, 24, 32):
                 </p>
                 <input placeholder="Please enter Grid Size" value={gridSize} type={"number"} className="min-w-[160px]" max={94} min={2} step={1}
-                    onChange={(e: any) => { updateGridSize(e.target.value) }} />
+                    onChange={(e: any) => {
+                        updateGridSize(e.target.value)
+                    }} />
             </div>
 
             <div className="flex flex-row px-[16px] gap-[16px] mt-[16px]">
@@ -39,7 +41,11 @@ export const GameConfigComponent: React.FC<{}> = () => {
             )}
             {stage == VCStage.Ready && (
                 <button className="mt-[24px] p-[8px] bg-[#0087ff] rounded-md w-[248px] text-[#ffffff] text-2xl text-bold"
-                    onClick={readyGame}>Go to Game</button>
+                    onClick={() => {
+                        if (gridSize < 2) {
+                            alert("Please Enter grid size between 2 to 250")
+                        } else { readyGame(gridSize) }
+                    }}>Go to Game</button>
             )}
 
         </div>

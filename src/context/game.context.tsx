@@ -27,6 +27,7 @@ const getGrid = (gridSize: number): Grid[][] => {
 }
 
 const initialState = {
+    loading: false,
     stage: GameStage.YET_TO_START,
     speed: 2000,
     gridSize: 8,
@@ -57,11 +58,20 @@ export const GameStateProvider = ({ children }: any) => {
         });
     };
 
-    const readyGame = () => {
+    const updateLoading = () => {
+        dispatch({
+            type: GameAction.UPDATE_LOADING,
+            payload: {}
+        });
+    };
+
+    const readyGame = (gridSize: number) => {
+        updateLoading()
         dispatch({
             type: GameAction.READY_GAME,
             payload: {
-                stage: GameStage.READY
+                stage: GameStage.READY,
+                grid: getGrid(gridSize)
             }
         });
     };
@@ -85,12 +95,10 @@ export const GameStateProvider = ({ children }: any) => {
     };
 
     const updateGridSize = (gridSize: number) => {
-        console.log(gridSize)
         dispatch({
             type: GameAction.UPDATE_GRID_SIZE,
             payload: {
-                gridSize: gridSize,
-                grid: getGrid(gridSize)
+                gridSize: gridSize
             }
         });
     };
@@ -105,8 +113,6 @@ export const GameStateProvider = ({ children }: any) => {
     }
 
     const checkForWinner = () => {
-        console.log(state.gridSize)
-        console.log(state.grid)
         let winner = true;
         for (let x = 0; x < state.gridSize; x++) {
             for (let y = 0; y < state.gridSize; y++) {
@@ -150,6 +156,7 @@ export const GameStateProvider = ({ children }: any) => {
         boardStart: state.boardStart,
         boardEnd: state.boardEnd,
         score: state.score,
+        loading: state.loading,
         initGame,
         readyGame,
         startGame,
@@ -158,7 +165,8 @@ export const GameStateProvider = ({ children }: any) => {
         updateSpeed,
         stopGame,
         updateScore,
-        checkForWinner
+        checkForWinner,
+        updateLoading
     };
 
     return <GameContext.Provider value={value}>{children}</GameContext.Provider>
