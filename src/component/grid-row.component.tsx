@@ -6,7 +6,7 @@ const GridRowComponentBase: React.FC<{ gridRow: Grid[] }> = ({ gridRow }) => {
     return (
         <div className="flex flex-row gap-[1px]">
             {gridRow.map((grid: Grid) => {
-                return <GridComponent grid={grid} />
+                return <GridComponent grid={grid} key={grid.id}/>
             })}
         </div>
     );

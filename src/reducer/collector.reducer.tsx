@@ -2,11 +2,21 @@ import { CollectorAction } from "../action/collector.action";
 import { CollectorStage } from "../enum/collector-stage.enum";
 import { Action } from "../model/action.model";
 import { CollectorState } from "../model/collector.state";
+import { Position } from "../model/grid.model";
 
 export const CollectorReducer = (state: CollectorState, action: Action): CollectorState => {
     const { type, payload } = action
 
     switch (type) {
+        case CollectorAction.INIT:
+            return {
+                ...state,
+                stage: CollectorStage.Study,
+                position: {
+                    x: 1,
+                    y: 1
+                } as Position
+            };
         case CollectorAction.START:
             return {
                 ...state,

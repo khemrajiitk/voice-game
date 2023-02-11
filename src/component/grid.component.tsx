@@ -25,10 +25,8 @@ const GridComponentBase: React.FC<{ grid: Grid }> = ({ grid }) => {
         }
     }, [position, stage])
 
-    const gridSizeClass = `w-[${24}px] h-[${24}px]`
-
     return (
-        <div className={`${gridSizeClass} bg-amber-700 relative`}>
+        <div className={`w-[24px] h-[24px] bg-amber-700 relative`}>
             {(grid.includeObject && !grid.picked) && (
                 <>
                     <img src="flower.jpeg" width={8} height={8} className="absolute left-0" />

@@ -9,10 +9,10 @@ import { Grid } from "../model/grid.model";
 import { GridRowComponent } from "./grid-row.component";
 
 export const GameBoardComponent: React.FC<{}> = () => {
-    const { stage, grid, startGame, checkForWinner, gridSize } = useContext(GameContext)
-    const { startTimer } = useContext(TimerContext)
-    const { startCollector, stopCollector, updateDirection } = useContext(CollectorContext)
-    const { currentCommand } = useContext(VCContext)
+    const { initGame, stage, grid, startGame, checkForWinner, gridSize } = useContext(GameContext)
+    const { initTimer, startTimer } = useContext(TimerContext)
+    const { startCollector, stopCollector, initCollector, updateDirection } = useContext(CollectorContext)
+    const { initVC, currentCommand } = useContext(VCContext)
 
     const startPlaying = () => {
         startGame()
@@ -28,6 +28,13 @@ export const GameBoardComponent: React.FC<{}> = () => {
     useEffect(() => {
         checkForWinner()
     }, [grid])
+
+    const restartGame = () => {
+        initTimer()
+        initCollector()
+        initVC()
+        initGame()
+    }
 
     useEffect(() => {
         switch (currentCommand) {
@@ -66,6 +73,10 @@ export const GameBoardComponent: React.FC<{}> = () => {
             {stage != GameStage.IN_PROGRESS && (
                 <button className="mt-[24px] p-[8px] bg-[#0087ff] rounded-md w-[364px] text-[#ffffff] text-2xl text-bold"
                     onClick={startPlaying}>Click here or say start to start game</button>
+            )}
+            {stage == GameStage.IN_PROGRESS && (
+                <button className="mt-[24px] p-[8px] bg-[#0087ff] rounded-md w-[364px] text-[#ffffff] text-2xl text-bold"
+                    onClick={restartGame}>Re-start Game</button>
             )}
         </div>
     );

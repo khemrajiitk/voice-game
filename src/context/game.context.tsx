@@ -1,4 +1,3 @@
-import { group } from "console";
 import { createContext, useReducer } from "react";
 import { GameAction } from "../action/game.action";
 import { GameStage } from "../enum/game-stage.enum";
@@ -31,8 +30,9 @@ const initialState = {
     stage: GameStage.YET_TO_START,
     speed: 2000,
     gridSize: 8,
-    grid: getGrid(8),
+    grid: [],
     score: 0,
+    scoreList: [],
     boardStart: {
         x: 0,
         y: 0
@@ -53,7 +53,7 @@ export const GameStateProvider = ({ children }: any) => {
         dispatch({
             type: GameAction.INIT_GAME,
             payload: {
-                stage: GameStage.YET_TO_START
+                stage: GameStage.YET_TO_START,
             }
         });
     };

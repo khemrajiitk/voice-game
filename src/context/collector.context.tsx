@@ -21,6 +21,12 @@ export const CollectorStateProvider = ({ children }: any) => {
 
     const [state, dispatch] = useReducer(CollectorReducer, initialState)
 
+    const initCollector = () => {
+        dispatch({
+            type: CollectorAction.INIT,
+            payload: {}
+        });
+    }
     const startCollector = () => {
         dispatch({
             type: CollectorAction.START,
@@ -99,6 +105,7 @@ export const CollectorStateProvider = ({ children }: any) => {
         stage: state.stage,
         position: state.position,
         direction: state.direction,
+        initCollector,
         startCollector,
         stopCollector,
         moveCollector,

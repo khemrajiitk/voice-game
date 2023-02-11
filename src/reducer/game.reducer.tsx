@@ -1,6 +1,9 @@
 import { GameAction } from "../action/game.action";
+import { GAME_SCORE } from "../enum/common.enum";
 import { Action } from "../model/action.model";
 import { GameState } from "../model/game-state.model";
+import { Score } from "../model/score.model";
+import { setItemInCacheList } from "../util/cache-helper";
 
 export const GameReducer = (state: GameState, action: Action): GameState => {
     const { type, payload } = action
@@ -10,7 +13,6 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
             return {
                 ...state,
                 stage: payload.stage,
-                grid: payload.grid
             };
         case GameAction.READY_GAME:
             return {
@@ -39,6 +41,11 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
                 stage: payload.stage
             };
         case GameAction.UPDATE_SCORE:
+            const _newScore: Score = {
+                score: payload.score,
+                time: new Date().getTime()
+            } as Score
+            setItemInCacheList(GAME_SCORE, _newScore)
             return {
                 ...state,
                 score: payload.score

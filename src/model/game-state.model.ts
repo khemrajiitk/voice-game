@@ -1,5 +1,6 @@
 import { GameStage } from "../enum/game-stage.enum";
 import { Grid, Position } from "./grid.model";
+import { Score } from "./score.model";
 
 export interface GameState {
     loading: boolean

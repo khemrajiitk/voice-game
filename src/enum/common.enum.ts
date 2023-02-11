@@ -1,1 +1,1 @@
-export const VOICE_GAIN_TOKEN = ""
+export const GAME_SCORE = "VOICE_GAME_SCORE"
