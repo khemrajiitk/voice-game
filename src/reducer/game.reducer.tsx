@@ -30,7 +30,7 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
         case GameAction.UPDATE_GRID_SIZE:
             return {
                 ...state,
-                grideSize: payload.grideSize
+                gridSize: payload.gridSize
             };
         case GameAction.STOP_GAME:
             return {

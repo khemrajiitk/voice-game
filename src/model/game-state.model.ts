@@ -5,7 +5,7 @@ import { Grid, Position } from "./grid.model";
 export interface GameState {
     stage: GameStage
     speed: number
-    grideSize: GridSize
+    gridSize: GridSize
     grid: Grid[][]
     score: number,
     boardStart: Position //position of board left top point

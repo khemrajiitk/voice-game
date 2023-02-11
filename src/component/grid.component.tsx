@@ -3,9 +3,10 @@ import { CollectorContext } from "../context/collector.context";
 import { GameContext } from "../context/game.context";
 import { CollectorStage } from "../enum/collector-stage.enum";
 import { Grid } from "../model/grid.model";
+import { CollectorComponent } from "./collector.component";
 
 export const GridComponent: React.FC<{ grid: Grid }> = ({ grid }) => {
-    const { speed, collectObject } = useContext(GameContext)
+    const { speed, gridSize, collectObject } = useContext(GameContext)
     const { position, stage, direction, moveCollector } = useContext(CollectorContext)
 
     const startMoving = () => {
@@ -23,8 +24,10 @@ export const GridComponent: React.FC<{ grid: Grid }> = ({ grid }) => {
         }
     }, [position, stage])
 
+    const gridSizeClass = `w-[${gridSize}px] h-[${gridSize}px]`
+
     return (
-        <div className="w-[32px] h-[32px] bg-amber-700 relative" key={grid.id}>
+        <div className={`${gridSizeClass} bg-amber-700 relative`}>
             {(grid.includeObject && !grid.picked) && (
                 <>
                     <img src="flower.jpeg" width={8} height={8} className="absolute left-0" />
@@ -34,7 +37,7 @@ export const GridComponent: React.FC<{ grid: Grid }> = ({ grid }) => {
                 </>
             )}
             {(grid.position.x == position.x && grid.position.y == position.y) && (
-                <img src="collector.gif" className="w-[80%] h-[80%] absolute right-[10%] bottom-[10%] top-[10%] left-[10%]" />
+                <CollectorComponent />
             )}
         </div>
     );

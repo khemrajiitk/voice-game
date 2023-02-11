@@ -4,7 +4,7 @@ import { VCContext } from "../context/voice-controller.context";
 import { VCStage } from "../enum/voice-controller-stage.enum";
 
 export const GameConfigComponent: React.FC<{}> = () => {
-    const { speed, grideSize, updateSpeed, updateGridSize, readyGame } = useContext(GameContext)
+    const { speed, gridSize, updateSpeed, updateGridSize, readyGame } = useContext(GameContext)
 
     const { stage } = useContext(VCContext)
 
@@ -17,7 +17,7 @@ export const GameConfigComponent: React.FC<{}> = () => {
                 <p className="text-xl">
                     Grid Size(slect from 16, 24, 32):
                 </p>
-                <input placeholder="Please enter Grid Size" value={grideSize} type={"number"} className="min-w-[160px]" max={12} min={4} step={4}
+                <input placeholder="Please enter Grid Size" value={gridSize} type={"number"} className="min-w-[160px]" max={12} min={4} step={4}
                     onChange={(e: any) => { updateGridSize(e.target.value) }} />
             </div>
 

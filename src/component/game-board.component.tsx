@@ -57,9 +57,9 @@ export const GameBoardComponent: React.FC<{}> = () => {
     }, [currentCommand])
 
     return (
-        <div className="flex flex-col gap-[1px] mx-auto">
+        <div className="flex flex-col gap-[1px] mx-auto max-w-[200%] max-h-[200%]">
             {grid.map((gridRow: Grid[]) => {
-                return <GridRowComponent gridRow={gridRow} />
+                return <GridRowComponent gridRow={gridRow} key={`${gridRow[0].position.x}_row_number`} />
             })}
             {stage != GameStage.IN_PROGRESS && (
                 <button className="mt-[24px] p-[8px] bg-[#0087ff] rounded-md w-[364px] text-[#ffffff] text-2xl text-bold"

@@ -3,9 +3,9 @@ import { GridComponent } from "./grid.component";
 
 export const GridRowComponent: React.FC<{ gridRow: Grid[] }> = ({ gridRow }) => {
     return (
-        <div className="flex flex-row gap-[1px]" key={`${gridRow[0].position.x}_row_number`}>
+        <div className="flex flex-row gap-[1px]">
             {gridRow.map((grid: Grid) => {
-                return <GridComponent grid={grid} />
+                return <GridComponent grid={grid} key={grid.id} />
             })}
         </div>
     );

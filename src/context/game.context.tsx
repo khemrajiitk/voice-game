@@ -29,7 +29,7 @@ const getGrid = (): Grid[][] => {
 const initialState = {
     stage: GameStage.YET_TO_START,
     speed: 2000,
-    grideSize: GridSize.Medium,
+    gridSize: GridSize.Medium,
     grid: getGrid(),
     score: 0,
     boardStart: {
@@ -142,7 +142,7 @@ export const GameStateProvider = ({ children }: any) => {
     const value = {
         stage: state.stage,
         speed: state.speed,
-        grideSize: state.grideSize,
+        gridSize: state.gridSize,
         grid: state.grid,
         boardStart: state.boardStart,
         boardEnd: state.boardEnd,
