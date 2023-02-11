@@ -14,7 +14,7 @@ export const GridComponent: React.FC<{ grid: Grid }> = ({ grid }) => {
                 collectObject(grid.position)
             }
             moveCollector(position, direction)
-        }, (grid.includeObject && !grid.picked) ? speed : 100)
+        }, speed)
     }
 
     useEffect(() => {
