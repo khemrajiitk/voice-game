@@ -15,7 +15,7 @@ const AppBase = () => {
         console.log("recognition is complete");
         //If a word in the grammar has MATCHED
         if (message.status == "MATCH") {
-          console.log(message.alternatives[0].utterance)
+          // console.log(message.alternatives[0].utterance)
           updateCommand(message.alternatives[0].utterance)
         } else if (message.status == "NOMATCH") {
           console.log("Not able to match")

@@ -1,29 +1,11 @@
 import React from "react";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { CollectorContext } from "../context/collector.context";
-import { GameContext } from "../context/game.context";
-import { CollectorStage } from "../enum/collector-stage.enum";
 import { Grid } from "../model/grid.model";
 import { CollectorComponent } from "./collector.component";
 
 const GridComponentBase: React.FC<{ grid: Grid }> = ({ grid }) => {
-    const { speed, gridSize, collectObject } = useContext(GameContext)
-    const { position, stage, direction, moveCollector } = useContext(CollectorContext)
-
-    const startMoving = () => {
-        setTimeout(() => {
-            if (grid.includeObject && !grid.picked) {
-                collectObject(grid.position)
-            }
-            moveCollector(position, direction, gridSize)
-        }, speed)
-    }
-
-    useEffect(() => {
-        if ((grid.position.x == position.x && grid.position.y == position.y) && stage == CollectorStage.Moving) {
-            startMoving()
-        }
-    }, [position, stage])
+    const { position } = useContext(CollectorContext)
 
     return (
         <div className={`w-[24px] h-[24px] bg-amber-700 relative`}>
@@ -36,7 +18,7 @@ const GridComponentBase: React.FC<{ grid: Grid }> = ({ grid }) => {
                 </>
             )}
             {(grid.position.x == position.x && grid.position.y == position.y) && (
-                <CollectorComponent />
+                <CollectorComponent grid={grid}/>
             )}
         </div>
     );

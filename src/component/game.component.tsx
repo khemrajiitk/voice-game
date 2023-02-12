@@ -2,9 +2,7 @@ import { useContext, useEffect } from "react";
 import { CollectorStateProvider } from "../context/collector.context";
 import { GameContext, GameStateProvider } from "../context/game.context";
 import { TimerStateProvider } from "../context/timer.context";
-import { GAME_SCORE } from "../enum/common.enum";
 import { GameStage } from "../enum/game-stage.enum";
-import { getCacheList } from "../util/cache-helper";
 import { GameBoardComponent } from "./game-board.component";
 import { GameConfigComponent } from "./game-config.component";
 import { GameResultComponent } from "./game-result.component";
@@ -15,18 +13,10 @@ export const GameComponentBase: React.FC = () => {
     const { loading, stage, updateLoading } = useContext(GameContext)
 
     useEffect(() => {
-        console.log(loading)
         if (stage == GameStage.READY && loading) {
             updateLoading()
         }
     }, [stage, loading])
-
-    useEffect(() => {
-        const _scoreList = getCacheList(GAME_SCORE)
-        _scoreList.map((data: any) => {
-            console.log(data)
-        })
-    }, [])
 
     return (
         <div>

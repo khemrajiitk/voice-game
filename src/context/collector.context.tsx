@@ -8,7 +8,7 @@ import { CollectorReducer } from "../reducer/collector.reducer";
 
 const initialState = {
     stage: CollectorStage.Study,
-    direction: CollectorDirection.LEFT,
+    direction: CollectorDirection.RIGHT,
     position: {
         x: 1,
         y: 1
