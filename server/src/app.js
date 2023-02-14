@@ -1,14 +1,17 @@
 import got from 'got';
-import express from 'express' 
+import express from 'express'
 import cors from 'cors'
+import * as dotenv from 'dotenv'
+dotenv.config()
+
 const app = express()
 const port = 4040
 
 app.use(cors())
 
 app.get('/api/jwt', async (req, res) => {
-    let voicegainApiUrl = new URL("https://api.voicegain.ai/v1/security/jwt");
-    const bearer = "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI1OGIyNzg5Ny01YjBlLTQ3ZTYtOWMyYy0yMTI5ZjYxMGU2YjAiLCJhdWQiOiJodHRwczovL2FwaS52b2ljZWdhaW4uYWkvdjEiLCJzdWIiOiI3MjEyZDkxZS01MWM0LTQ4NmMtYjY4MC04YzZlZTQ0MDUwYTMifQ.QGJwOjJSquFwy1mu6Et2odi8VhFWWiVc7R7NwzlGoZk";
+    let voicegainApiUrl = new URL(process.env.API_URL);
+    const bearer = "Bearer " + process.env.ACCESS_TOKEN;
     const options = {
         headers: {
             Authorization: bearer,
@@ -16,7 +19,7 @@ app.get('/api/jwt', async (req, res) => {
         },
         searchParams: {
             aud: "localhost:3000",
-            expInSec: 3600,
+            expInSec: process.env.TOKEN_EXPITY_TIME,
         },
     };
 
