@@ -1,0 +1,19 @@
+version: '3.0'
+
+services:
+  frontend:
+    container_name: frontend-container
+    image: front-end-image
+    build:
+      context: .
+    ports: ["3000:3000"]
+  server:
+    container_name: backend-container
+    image: backend-image
+    build:
+      context: server
+      dockerfile: Dockerfile
+    ports: ["4040:4040"]
+
+
+ 
